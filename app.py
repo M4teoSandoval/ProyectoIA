@@ -26,8 +26,8 @@ Father_Education = st.sidebar.selectbox("Educación del Padre", [1, 2, 3, 4], fo
 Travel_Time = st.sidebar.selectbox("Tiempo de Viaje", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
 Study_Time = st.sidebar.selectbox("Tiempo de Estudio", [1, 2, 3, 4], format_func=lambda x: ["< 1 hora", "2 horas", "3 horas", "4+ horas"][x-1])
 Number_of_Failures = st.sidebar.selectbox("Número de Fracasos Académicos", [0, 1, 2, 3])
-Weekend_Alcohol = st.sidebar.selectbox("Consumo de Alcohol en Fin de Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
-Weekday_Alcohol = st.sidebar.selectbox("Consumo de Alcohol entre Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+Weekend_Alcohol_Consumption = st.sidebar.selectbox("Consumo de Alcohol en Fin de Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+Weekday_Alcohol_Consumption = st.sidebar.selectbox("Consumo de Alcohol entre Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
 Health_Status = st.sidebar.selectbox("Estado de Salud", [1, 2, 3, 4, 5], format_func=lambda x: ["Muy malo", "Malo", "Regular", "Bueno", "Excelente"][x-1])
 Number_of_Absences = st.sidebar.slider("Número de Ausencias", 0, 32, 5)
 Final_Grade = st.sidebar.slider("Nota Final Convertida", 0, 5, 3)
@@ -41,8 +41,8 @@ data = pd.DataFrame({
     "Travel_Time": [Travel_Time],
     "Study_Time": [Study_Time],
     "Number_of_Failures": [Number_of_Failures],
-    "Weekend_Alcohol_Consumption": [Weekend_Alcohol],
-    "Weekday_Alcohol_Consumption": [Weekday_Alcohol],
+    "Weekend_Alcohol_Consumption": [Weekend_Alcohol_Consumption],
+    "Weekday_Alcohol_Consumption": [Weekday_Alcohol_Consumption],
     "Health_Status": [Health_Status],
     "Number_of_Absences": [Number_of_Absences],
     "final_grade_converted": [Final_Grade],
