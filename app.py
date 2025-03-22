@@ -4,8 +4,8 @@ import joblib
 import numpy as np
 
 # Cargar modelos
-scaler = joblib.load("/mnt/data/scaler.pkl")
-svc_model = joblib.load("/mnt/data/svc_model.pkl")
+scaler = joblib.load("scaler.pkl")
+svc_model = joblib.load("svc_model.pkl")
 
 # Configuración de la aplicación
 st.title("Modelo predicción de deserción universitaria con IA")
@@ -16,7 +16,7 @@ st.write("Esta aplicación utiliza inteligencia artificial para predecir la dese
          "basándose en diversos factores relacionados con el estudiante y su entorno académico y familiar.")
 
 # Imagen
-st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/Estudiante-universitaria-en-una-Aula-de-Clase.Foto-Ferran-Nadeu.jpg", use_column_width=True)
+st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/Estudiante-universitaria-en-una-Aula-de-Clase.Foto-Ferran-Nadeu.jpg", use_container_width=True)
 
 # Entrada de datos
 st.markdown("### Ingrese los datos del estudiante")
