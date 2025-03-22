@@ -20,7 +20,7 @@ st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/E
 # Entrada de datos
 st.sidebar.header("Introduce los datos del estudiante")
 
-age = st.sidebar.slider("Edad", 16, 25, 20)
+Age = st.sidebar.slider("Edad", 16, 25, 20)
 mother_education = st.sidebar.selectbox("Educación de la Madre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
 father_education = st.sidebar.selectbox("Educación del Padre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
 travel_time = st.sidebar.selectbox("Tiempo de Viaje", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
@@ -35,7 +35,7 @@ free_time = st.sidebar.slider("Tiempo Libre", 1, 5, 3)
 
 # Convertir los datos a DataFrame
 data = pd.DataFrame({
-    "Age": [age],
+    "Age": [Age],
     "Mother_Education": [mother_education],
     "Father_Education": [father_education],
     "Travel_Time": [travel_time],
