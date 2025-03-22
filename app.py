@@ -21,32 +21,32 @@ st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/E
 st.sidebar.header("Introduce los datos del estudiante")
 
 Age = st.sidebar.slider("Edad", 16, 25, 20)
-mother_education = st.sidebar.selectbox("Educación de la Madre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
-father_education = st.sidebar.selectbox("Educación del Padre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
-travel_time = st.sidebar.selectbox("Tiempo de Viaje", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
-study_time = st.sidebar.selectbox("Tiempo de Estudio", [1, 2, 3, 4], format_func=lambda x: ["< 1 hora", "2 horas", "3 horas", "4+ horas"][x-1])
-number_of_failures = st.sidebar.selectbox("Número de Fracasos Académicos", [0, 1, 2, 3])
-weekend_alcohol = st.sidebar.selectbox("Consumo de Alcohol en Fin de Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
-weekday_alcohol = st.sidebar.selectbox("Consumo de Alcohol entre Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
-health_status = st.sidebar.selectbox("Estado de Salud", [1, 2, 3, 4, 5], format_func=lambda x: ["Muy malo", "Malo", "Regular", "Bueno", "Excelente"][x-1])
-number_of_absences = st.sidebar.slider("Número de Ausencias", 0, 32, 5)
-final_grade = st.sidebar.slider("Nota Final Convertida", 0, 5, 3)
-free_time = st.sidebar.slider("Tiempo Libre", 1, 5, 3)
+Mother_Education = st.sidebar.selectbox("Educación de la Madre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
+Father_Education = st.sidebar.selectbox("Educación del Padre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
+Travel_Time = st.sidebar.selectbox("Tiempo de Viaje", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
+Study_Time = st.sidebar.selectbox("Tiempo de Estudio", [1, 2, 3, 4], format_func=lambda x: ["< 1 hora", "2 horas", "3 horas", "4+ horas"][x-1])
+Number_of_Failures = st.sidebar.selectbox("Número de Fracasos Académicos", [0, 1, 2, 3])
+Weekend_Alcohol = st.sidebar.selectbox("Consumo de Alcohol en Fin de Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+Weekday_Alcohol = st.sidebar.selectbox("Consumo de Alcohol entre Semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+Health_Status = st.sidebar.selectbox("Estado de Salud", [1, 2, 3, 4, 5], format_func=lambda x: ["Muy malo", "Malo", "Regular", "Bueno", "Excelente"][x-1])
+Number_of_Absences = st.sidebar.slider("Número de Ausencias", 0, 32, 5)
+Final_Grade = st.sidebar.slider("Nota Final Convertida", 0, 5, 3)
+Free_Time = st.sidebar.slider("Tiempo Libre", 1, 5, 3)
 
 # Convertir los datos a DataFrame
 data = pd.DataFrame({
     "Age": [Age],
-    "Mother_Education": [mother_education],
-    "Father_Education": [father_education],
-    "Travel_Time": [travel_time],
-    "Study_Time": [study_time],
-    "Number_of_Failures": [number_of_failures],
-    "Weekend_Alcohol_Consumption": [weekend_alcohol],
-    "Weekday_Alcohol_Consumption": [weekday_alcohol],
-    "Health_Status": [health_status],
-    "Number_of_Absences": [number_of_absences],
-    "final_grade_converted": [final_grade],
-    "Free_Time": [free_time]
+    "Mother_Education": [Mother_Education],
+    "Father_Education": [Father_Education],
+    "Travel_Time": [Travel_Time],
+    "Study_Time": [Study_Time],
+    "Number_of_Failures": [Number_of_Failures],
+    "Weekend_Alcohol_Consumption": [Weekend_Alcohol],
+    "Weekday_Alcohol_Consumption": [Weekday_Alcohol],
+    "Health_Status": [Health_Status],
+    "Number_of_Absences": [Number_of_Absences],
+    "final_grade_converted": [Final_Grade],
+    "Free_Time": [Free_Time]
 })
 
 # Verificar que los datos tengan las columnas correctas
