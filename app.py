@@ -15,7 +15,7 @@ st.subheader("Realizado por Mateo Sandoval, Wilson Suarez, Cristian Cala")
 st.write("Esta aplicación utiliza Inteligencia Artificial para predecir si un estudiante continuará o abandonará su carrera universitaria, basándose en diversos factores académicos y personales.")
 
 # Imagen
-st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/Estudiante-universitaria-en-una-Aula-de-Clase.Foto-Ferran-Nadeu.jpg", use_column_width=True)
+st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/Estudiante-universitaria-en-una-Aula-de-Clase.Foto-Ferran-Nadeu.jpg", use_container_width=True)
 
 # Entrada de datos
 st.sidebar.header("Introduce los datos del estudiante")
