@@ -42,7 +42,7 @@ school_support = st.sidebar.selectbox("School_Support", ["Yes", "No"])
 family_support = st.sidebar.selectbox("Family_Support", ["Yes", "No"])
 internet_access = st.sidebar.selectbox("Internet_Access", ["Yes", "No"])
 free_time = st.sidebar.slider("Free_Time", 1, 5, 3)
-dropped_out = st.sidebar.selectbox("Dropped_Out", [0, 1])  # 0 = No, 1 = Sí
+
 
 # Convertir los datos a DataFrame con los nombres correctos
 data = pd.DataFrame({
@@ -62,7 +62,6 @@ data = pd.DataFrame({
     "Weekday_Alcohol_Consumption": [weekday_alcohol],
     "Health_Status": [health_status],
     "Number_of_Absences": [number_of_absences],
-    "Dropped_Out": [dropped_out],
     "final_grade_converted": [final_grade]
 })
 
