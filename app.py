@@ -21,43 +21,49 @@ st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/E
 # Entrada de datos
 st.sidebar.header("Introduce los datos del estudiante")
 
+import streamlit as st
+import pandas as pd
+
+# Sidebar con los inputs del usuario
 age = st.sidebar.slider("Age", 16, 25, 20)
 mother_education = st.sidebar.selectbox("Mother_Education", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
 father_education = st.sidebar.selectbox("Father_Education", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
 travel_time = st.sidebar.selectbox("Travel_Time", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
 study_time = st.sidebar.selectbox("Study_Time", [1, 2, 3, 4], format_func=lambda x: ["< 1 hora", "2 horas", "3 horas", "4+ horas"][x-1])
 number_of_failures = st.sidebar.selectbox("Number_of_Failures", [0, 1, 2, 3])
-weekend_alcohol = st.sidebar.selectbox("Weekend_Comsumption_Alcohol", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
-weekday_alcohol = st.sidebar.selectbox("Weekday_Comsumption_Alcohol", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+weekend_alcohol = st.sidebar.selectbox("Weekend_Alcohol_Consumption", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+weekday_alcohol = st.sidebar.selectbox("Weekday_Alcohol_Consumption", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
 health_status = st.sidebar.selectbox("Health_Status", [1, 2, 3, 4, 5], format_func=lambda x: ["Muy malo", "Malo", "Regular", "Bueno", "Excelente"][x-1])
 number_of_absences = st.sidebar.slider("Number_of_Absences", 0, 32, 5)
 final_grade = st.sidebar.slider("final_grade_converted", 0, 5, 3)
-address = st.sidebar.selectbox("Adress", ["U", "R"], format_func=lambda x: "Urbana" if x == "U" else "Rural")
+address = st.sidebar.selectbox("Address", ["U", "R"], format_func=lambda x: "Urbana" if x == "U" else "Rural")
 parental_status = st.sidebar.selectbox("Parental_Status", ["T", "A"], format_func=lambda x: "Juntos" if x == "T" else "Divorciados")
 school_support = st.sidebar.selectbox("School_Support", ["Yes", "No"])
 family_support = st.sidebar.selectbox("Family_Support", ["Yes", "No"])
 internet_access = st.sidebar.selectbox("Internet_Access", ["Yes", "No"])
 free_time = st.sidebar.slider("Free_Time", 1, 5, 3)
+dropped_out = st.sidebar.selectbox("Dropped_Out", [0, 1])  # 0 = No, 1 = Sí
 
-# Convertir los datos a DataFrame
+# Convertir los datos a DataFrame con los nombres correctos
 data = pd.DataFrame({
     "Age": [age],
+    "Address": [1 if address == "U" else 0],
+    "Parental_Status": [1 if parental_status == "T" else 0],
     "Mother_Education": [mother_education],
     "Father_Education": [father_education],
     "Travel_Time": [travel_time],
     "Study_Time": [study_time],
     "Number_of_Failures": [number_of_failures],
-    "Weekend_Comsumption_Alcohol": [weekend_alcohol],
-    "Weekday_Comsumption_Alcohol": [weekday_alcohol],
-    "Health_Status": [health_status],
-    "Number_of_Absences": [number_of_absences],
-    "final_grade_converted": [final_grade],
-    "Adress": [1 if address == "U" else 0],
-    "Parental_Status": [1 if parental_status == "T" else 0],
     "School_Support": [1 if school_support == "Yes" else 0],
     "Family_Support": [1 if family_support == "Yes" else 0],
     "Internet_Access": [1 if internet_access == "Yes" else 0],
-    "Free_Time": [free_time]
+    "Free_Time": [free_time],
+    "Weekend_Alcohol_Consumption": [weekend_alcohol],
+    "Weekday_Alcohol_Consumption": [weekday_alcohol],
+    "Health_Status": [health_status],
+    "Number_of_Absences": [number_of_absences],
+    "Dropped_Out": [dropped_out],
+    "final_grade_converted": [final_grade]
 })
 
 # Normalizar los datos
