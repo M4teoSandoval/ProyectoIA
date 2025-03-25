@@ -1,69 +1,77 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import joblib
-from sklearn.preprocessing import StandardScaler
+import numpy as np
 
-# Cargar modelos
+
+# Cargar los modelos
 scaler = joblib.load("scaler.pkl")
 svc_model = joblib.load("svc_model.pkl")
 
-# Configurar la página
+# Título y subtítulo
 st.title("Modelo predicción de deserción universitaria con IA")
 st.subheader("Realizado por Mateo Sandoval, Wilson Suarez, Cristian Cala")
 
 # Introducción
-st.write("Esta aplicación utiliza un modelo de Machine Learning para predecir si un estudiante tiene riesgo de desertar de la universidad.")
+st.write("Esta aplicación utiliza Inteligencia Artificial para predecir si un estudiante continuará o abandonará su carrera universitaria, basándose en diversos factores académicos y personales. ")
 
 # Imagen
-st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/Estudiante-universitaria-en-una-Aula-de-Clase.Foto-Ferran-Nadeu.jpg")
+st.image("https://www.reporterosasociados.com.co/wp/wp-content/uploads/2023/06/Estudiante-universitaria-en-una-Aula-de-Clase.Foto-Ferran-Nadeu.jpg", use_container_width=True)
 
 # Entrada de datos
-age = st.slider("Age", 16, 25, 20)
-mother_education = st.selectbox("Mother_Education", [1, 2, 3, 4])
-father_education = st.selectbox("Father_Education", [1, 2, 3, 4])
-travel_time = st.selectbox("Travel_Time", [1, 2, 3, 4])
-study_time = st.selectbox("Study_Time", [1, 2, 3, 4])
-number_of_failures = st.selectbox("Number_of_Failures", [0, 1, 2, 3])
-weekend_consumption = st.selectbox("Weekend_Comsumption_Alcohol", [1, 2, 3, 4, 5])
-weekday_consumption = st.selectbox("Weekday_Comsumption_Alcohol", [1, 2, 3, 4, 5])
-health_status = st.selectbox("Health_Status", [1, 2, 3, 4, 5])
-number_of_absences = st.slider("Number_of_Absences", 0, 32, 5)
-final_grade_converted = st.slider("final_grade_converted", 0, 5, 3)
-address = st.selectbox("Adress", ["U", "R"])
-parental_status = st.selectbox("Parental_Status", ["A", "T"])
-school_support = st.selectbox("School_Support", ["Yes", "No"])
-family_support = st.selectbox("Family_Support", ["Yes", "No"])
-internet_access = st.selectbox("Internet_Access", ["Yes", "No"])
-free_time = st.slider("Free_Time", 1, 5, 3)
+st.sidebar.header("Introduce los datos del estudiante")
 
-# Convertir datos a DataFrame
-data = pd.DataFrame([[age, mother_education, father_education, travel_time, study_time, number_of_failures,
-                      weekend_consumption, weekday_consumption, health_status, number_of_absences,
-                      final_grade_converted, address, parental_status, school_support, family_support,
-                      internet_access, free_time]],
-                    columns=["Age", "Mother_Education", "Father_Education", "Travel_Time", "Study_Time", "Number_of_Failures",
-                             "Weekend_Comsumption_Alcohol", "Weekday_Comsumption_Alcohol", "Health_Status", "Number_of_Absences",
-                             "final_grade_converted", "Adress", "Parental_Status", "School_Support", "Family_Support",
-                             "Internet_Access", "Free_Time"])
+age = st.sidebar.slider("Age", 16, 25, 20)
+mother_education = st.sidebar.selectbox("Mother_Education", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
+father_education = st.sidebar.selectbox("Father_Education", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
+travel_time = st.sidebar.selectbox("Travel_Time", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
+study_time = st.sidebar.selectbox("Study_Time", [1, 2, 3, 4], format_func=lambda x: ["< 1 hora", "2 horas", "3 horas", "4+ horas"][x-1])
+number_of_failures = st.sidebar.selectbox("Number_of_Failures", [0, 1, 2, 3])
+weekend_alcohol = st.sidebar.selectbox("Weekend_Comsumption_Alcohol", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+weekday_alcohol = st.sidebar.selectbox("Weekday_Comsumption_Alcohol", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
+health_status = st.sidebar.selectbox("Health_Status", [1, 2, 3, 4, 5], format_func=lambda x: ["Muy malo", "Malo", "Regular", "Bueno", "Excelente"][x-1])
+number_of_absences = st.sidebar.slider("Number_of_Absences", 0, 32, 5)
+final_grade = st.sidebar.slider("final_grade_converted", 0, 5, 3)
+address = st.sidebar.selectbox("Adress", ["U", "R"], format_func=lambda x: "Urbana" if x == "U" else "Rural")
+parental_status = st.sidebar.selectbox("Parental_Status", ["T", "A"], format_func=lambda x: "Juntos" if x == "T" else "Divorciados")
+school_support = st.sidebar.selectbox("School_Support", ["Yes", "No"])
+family_support = st.sidebar.selectbox("Family_Support", ["Yes", "No"])
+internet_access = st.sidebar.selectbox("Internet_Access", ["Yes", "No"])
+free_time = st.sidebar.slider("Free_Time", 1, 5, 3)
 
-# Normalizar datos
-numeric_cols = ["Age", "Mother_Education", "Father_Education", "Travel_Time", "Study_Time", "Number_of_Failures",
-                "Weekend_Comsumption_Alcohol", "Weekday_Comsumption_Alcohol", "Health_Status", "Number_of_Absences",
-                "final_grade_converted", "Free_Time"]
-data[numeric_cols] = scaler.transform(data[numeric_cols])
+# Convertir los datos a DataFrame
+data = pd.DataFrame({
+    "Age": [age],
+    "Mother_Education": [mother_education],
+    "Father_Education": [father_education],
+    "Travel_Time": [travel_time],
+    "Study_Time": [study_time],
+    "Number_of_Failures": [number_of_failures],
+    "Weekend_Comsumption_Alcohol": [weekend_alcohol],
+    "Weekday_Comsumption_Alcohol": [weekday_alcohol],
+    "Health_Status": [health_status],
+    "Number_of_Absences": [number_of_absences],
+    "final_grade_converted": [final_grade],
+    "Adress": [1 if address == "U" else 0],
+    "Parental_Status": [1 if parental_status == "T" else 0],
+    "School_Support": [1 if school_support == "Yes" else 0],
+    "Family_Support": [1 if family_support == "Yes" else 0],
+    "Internet_Access": [1 if internet_access == "Yes" else 0],
+    "Free_Time": [free_time]
+})
 
-# Predecir
-y_pred = svc_model.predict(data)[0]
+# Normalizar los datos
+scaled_data = scaler.transform(data)
 
-# Mostrar resultado
-if y_pred:
-    st.markdown("<div style='background-color:red; padding:10px; color:white; text-align:center;'>🚨 Si vas a abandonar tu carrera 🚨</div>", unsafe_allow_html=True)
-else:
-    st.markdown("<div style='background-color:blue; padding:10px; color:white; text-align:center;'>🎓 Si vas a continuar con tu carrera 🎓</div>", unsafe_allow_html=True)
+# Predicción
+prediction = svc_model.predict(scaled_data)[0]
 
-# Línea divisoria
+# Mostrar el resultado
 st.markdown("---")
+if prediction:
+    st.markdown("<h2 style='color: red; text-align: center;'>❌ Si vas a abandonar tu carrera ❌</h2>", unsafe_allow_html=True)
+else:
+    st.markdown("<h2 style='color: blue; text-align: center;'>✅ Si vas a continuar con tu carrera ✅</h2>", unsafe_allow_html=True)
 
-# Copyright
-st.markdown("<p style='text-align:center;'>&copy; Unab2025</p>", unsafe_allow_html=True)
+# Footer
+st.markdown("<p style='text-align: center;'>&copy; Unab2025</p>", unsafe_allow_html=True)
