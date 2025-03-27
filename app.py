@@ -5,8 +5,8 @@ import numpy as np
 
 
 # Cargar los modelos
-scaler = joblib.load("scaler1.pkl")
-svc_model = joblib.load("svc_model1.pkl")
+scaler = joblib.load("scaler.pkl")
+svc_model = joblib.load("svc_model.pkl")
 
 # Título y subtítulo
 st.title("Modelo predicción de deserción universitaria con IA")
