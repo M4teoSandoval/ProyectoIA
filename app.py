@@ -38,9 +38,9 @@ number_of_absences = st.sidebar.slider("Numero de Inasistencias", 0, 32, 5)
 final_grade = st.sidebar.slider("Nota Promedio ultimo periodo  academico cursado", 0, 5, 3)
 address = st.sidebar.selectbox("Tipo de Residencia", ["U", "R"], format_func=lambda x: "Urbana" if x == "U" else "Rural")
 parental_status = st.sidebar.selectbox("Estado civil de los Padres", ["T", "A"], format_func=lambda x: "Juntos" if x == "T" else "Divorciados")
-school_support = st.sidebar.selectbox("Apoyo Universidad", ["Yes", "No"])
-family_support = st.sidebar.selectbox("Apoyo Familiar", ["Yes", "No"])
-internet_access = st.sidebar.selectbox("Acceso a internet", ["Yes", "No"])
+school_support = st.sidebar.selectbox("Apoyo Universidad", ["Si", "No"])
+family_support = st.sidebar.selectbox("Apoyo Familiar", ["Si", "No"])
+internet_access = st.sidebar.selectbox("Acceso a internet", ["Si", "No"])
 free_time = st.sidebar.slider("Tiempo Libre", 1, 5, 3)
 
 
