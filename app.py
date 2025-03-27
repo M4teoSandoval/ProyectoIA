@@ -30,7 +30,7 @@ mother_education = st.sidebar.selectbox("Nivel Educacion de la Madre", [1, 2, 3,
 father_education = st.sidebar.selectbox("Nivel Educacion de el Padre", [1, 2, 3, 4], format_func=lambda x: ["Sin estudios", "Primaria", "Bachillerato", "Profesional"][x-1])
 travel_time = st.sidebar.selectbox("Tiempo de desplazamiento a la Universidad", [1, 2, 3, 4], format_func=lambda x: ["< 15 min", "15-30 min", "30-60 min", "> 1 hora"][x-1])
 study_time = st.sidebar.selectbox("tiempo de estudio", [1, 2, 3, 4], format_func=lambda x: ["< 1 hora", "2 horas", "3 horas", "4+ horas"][x-1])
-number_of_failures = st.sidebar.selectbox("cantidad de materias perdidas.", [0, 1, 2, 3])
+number_of_failures = st.sidebar.selectbox("Numero de materias perdidas", [0, 1, 2, 3])
 weekend_alcohol = st.sidebar.selectbox("Consumo de alcohol fines de semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
 weekday_alcohol = st.sidebar.selectbox("Consumo de alcohol entre semana", [1, 2, 3, 4, 5], format_func=lambda x: ["Nunca", "Rara vez", "Moderado", "Frecuente", "Excesivo"][x-1])
 health_status = st.sidebar.selectbox("Estado de Salud", [1, 2, 3, 4, 5], format_func=lambda x: ["Muy malo", "Malo", "Regular", "Bueno", "Excelente"][x-1])
